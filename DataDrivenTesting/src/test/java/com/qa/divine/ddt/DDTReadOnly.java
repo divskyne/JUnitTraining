@@ -71,7 +71,7 @@ public class DDTReadOnly {
 		String user = username.getStringCellValue();
 		String pass = password.getStringCellValue();
 
-		driver.get("http://thedemosite.co.uk/");
+		driver.get(Constants.websiteURL);
 		Navigation navPage = PageFactory.initElements(driver, Navigation.class);
 		Login loginPage = PageFactory.initElements(driver, Login.class);
 		navPage.getNewUser().click();
@@ -91,9 +91,9 @@ public class DDTReadOnly {
 		test.log(LogStatus.INFO, "Entering password in login screen");
 		loginPage.setPassword(pass);
 		loginPage.submit().click();
-		if(loginPage.getLoginMessage().equals("**Successful Login**"))
+		if(loginPage.getLoginMessage().equals(Constants.successMessage))
 		{
-			assertEquals("**Successful Login**", loginPage.getLoginMessage());
+			assertEquals(Constants.successMessage, loginPage.getLoginMessage());
 			test.log(LogStatus.PASS, "Successfully created a user and logged in with it");
 		}
 		else
