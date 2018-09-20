@@ -27,7 +27,7 @@ public class TestDemoSite {
 	
 	@Before
 	public void setUp()  {
-		System.setProperty("webdriver.chrome.driver", "C:\\Users\\Admin\\Desktop\\chromedriver_win32\\chromedriver.exe");
+		System.setProperty("webdriver.chrome.driver", "C:/Users/Admin/Desktop/chromedriver_win32/chromedriver.exe");
 		driver = new ChromeDriver();
 		driver.manage().window().maximize();
 		page = PageFactory.initElements(driver, Navigation.class);
