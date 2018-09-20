@@ -30,8 +30,6 @@ public class TakeScreenShot {
 
      * @param webdriver
 
-     * @param fileWithPath
-
      * @throws Exception
 
      */
@@ -40,11 +38,10 @@ public class TakeScreenShot {
     {
         TakesScreenshot scrShot =((TakesScreenshot)webdriver);
         File srcFile=scrShot.getScreenshotAs(OutputType.FILE);
-        
         Path fileToMovePath = Paths.get(srcFile.getPath());
-        
         Path targetPath = Paths.get("src/main/resources/");
         Path imagepath = Files.move(fileToMovePath, targetPath.resolve(fileToMovePath.getFileName()));
-        return "";
+        
+        return imagepath.toFile().getAbsolutePath();
     }
 }

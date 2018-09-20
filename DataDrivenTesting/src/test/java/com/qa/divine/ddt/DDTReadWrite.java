@@ -29,7 +29,6 @@ public class DDTReadWrite {
 		System.setProperty("webdriver.gecko.driver","C:\\Users\\Admin\\Desktop\\geckodriver.exe");
 		driver = new FirefoxDriver();
 		driver.manage().window().maximize();
-
 	}
 
 	@After
