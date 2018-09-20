@@ -58,7 +58,6 @@ public class DDTReadWrite {
 	
 	private void action(int i) throws InterruptedException {
 		
-		Navigation navPage = PageFactory.initElements(driver, Navigation.class);
 		Login loginPage = PageFactory.initElements(driver, Login.class);
 		
 		test.log(LogStatus.INFO, "Opening Browser");
