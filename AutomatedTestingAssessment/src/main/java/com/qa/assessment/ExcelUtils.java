@@ -1,4 +1,4 @@
-package com.qa.dependencies;
+package com.qa.assessment;
 
 
 import java.io.FileInputStream;

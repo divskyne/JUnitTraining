@@ -1,4 +1,4 @@
-package com.qa.dependencies;
+package com.qa.assessment;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
@@ -24,7 +24,7 @@ public class ScreenshotHelper {
 
      */
 	
-	public String takeSnapShot(WebDriver webdriver)
+	public String takeScreenShot(WebDriver webdriver)
     {
         TakesScreenshot scrShot =((TakesScreenshot)webdriver);
         File srcFile=scrShot.getScreenshotAs(OutputType.FILE);
