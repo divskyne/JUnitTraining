@@ -36,15 +36,25 @@ public class ManageUsers {
 	private WebElement email;
 	
 	@FindBy(xpath="//*[@id=\"people\"]/tbody/tr")
-	List<WebElement> users;
+	private WebElement hiddenUsers;
 	
-	@FindBy(xpath="//*[@id=\"people\"]/tbody/tr")
-	WebElement hiddenUsers;
+	@FindBy(id="main-panel")
+	private WebElement addedUserName;
 	
-	public void userPage()
+	public String assertUser(String name, WebDriver driver) {
+		addedUserName = (new WebDriverWait(driver, 10)).until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[@id=\"main-panel\"]/div[2]")));
+		return addedUserName.getText().substring(17);
+	}
+	
+	public void manageAllUser()
 	{
 		manageJenkins();
 		manageUsers();
+	}
+	
+	public void userPage()
+	{
+		manageAllUser();
 		createUser();
 	}
 	
@@ -75,9 +85,60 @@ public class ManageUsers {
 		email.submit();
 	}
 	
-	public void findUser(String name, WebDriver driver)
+	public String userConfig(String name, WebDriver driver)
 	{
-		hiddenUsers = (new WebDriverWait(driver, 10)).until(ExpectedConditions.presenceOfElementLocated(By.linkText(name)));
+		List <WebElement> av = (new WebDriverWait(driver, 10)).until(ExpectedConditions.presenceOfAllElementsLocatedBy(By.xpath("//*[@id=\"tasks\"]/div[4]/a[1]")));
+		for (WebElement webElement : av) {
+			System.out.println(webElement.getAttribute("href"));
+			
+			if(webElement.getAttribute("href").equals(Constants.userParentLink+"user/"+name.toLowerCase()+"/configure"))
+			{
+				webElement.click();
+				return webElement.getText();
+			}
+			else if (webElement.getAttribute("href").equals(Constants.userParentLink+"user/"+"d%EF%BF%BDv"+"/configure"))
+			{
+				webElement.click();
+				return webElement.getText();
+			}
+		}
+		return null;
+	}
+	
+	public String userVisible(String name, WebDriver driver)
+	{
+		List <WebElement> av = (new WebDriverWait(driver, 10)).until(ExpectedConditions.presenceOfAllElementsLocatedBy(By.linkText(name)));
+		for (WebElement webElement : av) {
+			
+			if(webElement.getAttribute("href").equals(Constants.userParentLink+"user/"+name.toLowerCase()+"/"))
+			{
+				return webElement.getText();
+			}
+			else if (webElement.getAttribute("href").equals(Constants.userParentLink+"user/"+"d%EF%BF%BDv"+"/"))
+			{
+				return webElement.getText();
+			}
+		}
+		return null;
+	}
+	
+	public String findUser(String name, WebDriver driver)
+	{
+		
+		List <WebElement> av = (new WebDriverWait(driver, 10)).until(ExpectedConditions.presenceOfAllElementsLocatedBy(By.linkText(name)));
+		for (WebElement webElement : av) {
+			
+			if(webElement.getAttribute("href").equals(Constants.userParentLink+"user/"+name.toLowerCase()+"/"))
+			{
+				hiddenUsers = webElement;
+			}
+			else if (webElement.getAttribute("href").equals(Constants.userParentLink+"user/"+"d%EF%BF%BDv"+"/"))
+			{
+				hiddenUsers = webElement;
+			}
+		}
+		
 		hiddenUsers.click();
+		return assertUser(name,driver);
 	}
 }

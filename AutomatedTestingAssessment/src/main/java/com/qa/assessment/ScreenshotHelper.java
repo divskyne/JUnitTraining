@@ -24,7 +24,7 @@ public class ScreenshotHelper {
 
      */
 	
-	public String takeScreenShot(WebDriver webdriver)
+	public static String takeScreenShot(WebDriver webdriver)
     {
         TakesScreenshot scrShot =((TakesScreenshot)webdriver);
         File srcFile=scrShot.getScreenshotAs(OutputType.FILE);

@@ -22,4 +22,6 @@ public class Constants {
 	public static final String chromeDriverLocation = "C:/Users/Admin/Desktop/chromedriver_win32/chromedriver.exe";
 	
 	public static final String driverName = "webdriver.chrome.driver";
+
+	public static String userParentLink = "http://localhost:8080/securityRealm/";
 }
