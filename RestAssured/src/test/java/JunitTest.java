@@ -40,7 +40,7 @@ public class JunitTest
 		  JSONObject obj = new JSONObject (response.body().asString());
 		  //System.out.println(obj.get("Search"));#
 		  List<Object> l = obj.getJSONArray("Search").toList();
-		  l.stream().filter(o -> l.)
+		  //l.stream().filter(o -> l.)
 		  JSONArray jArray = obj.getJSONArray("Search");
 		  for (Object object : jArray) 
 		  {
